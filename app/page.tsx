@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { InvoiceForm } from "@/components/invoice-form"
 import { InvoicePreview } from "@/components/invoice-preview"
 import { Button } from "@/components/ui/button"
@@ -340,6 +341,17 @@ export default function InvoiceGeneratorPage() {
               Invoice Generator
             </h1>
             <p className="mt-2 text-[#6B7280]">Create professional invoices in seconds</p>
+            <div className="mt-4 flex items-center gap-3">
+              <Link href="/">
+                <Button className="bg-[#2563EB] text-white">Invoice</Button>
+              </Link>
+              <Link href="/delivery-order">
+                <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Delivery Order</Button>
+              </Link>
+              <Link href="/purchase-order">
+                <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Purchase Order</Button>
+              </Link>
+            </div>
           </div>
           <div className="flex gap-3">
             <Button
