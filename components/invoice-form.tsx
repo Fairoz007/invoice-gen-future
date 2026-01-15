@@ -458,6 +458,50 @@ export function InvoiceForm({ invoiceData, setInvoiceData }: InvoiceFormProps) {
           </div>
 
           <div>
+            <Label htmlFor="paymentMethod" className="text-[#1F2937]">
+              Payment Method
+            </Label>
+            <Select
+              value={invoiceData.paymentMethod || "Bank Transfer"}
+              onValueChange={(value) => handleInputChange("paymentMethod", value)}
+            >
+              <SelectTrigger className="mt-2 border-[#E5E7EB] bg-white text-[#1F2937]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-[#E5E7EB]">
+                <SelectItem value="Bank Transfer">Bank Transfer</SelectItem>
+                <SelectItem value="Credit Card">Credit Card</SelectItem>
+                <SelectItem value="Cash">Cash</SelectItem>
+                <SelectItem value="Cheque">Cheque</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {(invoiceData.paymentMethod === "Bank Transfer" || invoiceData.paymentMethod === undefined) && (
+            <div className="rounded-lg border border-[#DBEAFE] bg-[#DBEAFE] p-4">
+              <h4 className="mb-3 font-medium text-[#2563EB]">Bank Transfer Details</h4>
+              <div className="space-y-2 text-sm text-[#1F2937]">
+                <div>
+                  <span className="font-semibold">Company Name:</span>
+                  <p>FUTURE FRONT EXCELLENCE LLC</p>
+                </div>
+                <div>
+                  <span className="font-semibold">Account Number:</span>
+                  <p>0338080791430018</p>
+                </div>
+                <div>
+                  <span className="font-semibold">IBAN No:</span>
+                  <p>OM430270338080791430018</p>
+                </div>
+                <div>
+                  <span className="font-semibold">Branch Name:</span>
+                  <p>0338 - Br Al Amerat</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div>
             <Label htmlFor="notes" className="text-[#1F2937]">
               Notes / Terms & Conditions
             </Label>
@@ -470,6 +514,16 @@ export function InvoiceForm({ invoiceData, setInvoiceData }: InvoiceFormProps) {
               placeholder="Add any additional notes or terms..."
             />
           </div>
+        </div>
+      </Card>
+
+      {/* Signature & Seal Section */}
+      <Card className="border-[#E5E7EB] bg-white p-6 shadow-sm">
+        <h3 className="mb-4 text-lg font-semibold text-[#1F2937]">Signature & Seal</h3>
+        <div className="rounded-lg border-2 border-[#DBEAFE] bg-[#F0F9FF] p-4">
+          <p className="text-sm text-[#1F2937]">
+            <span className="font-semibold">Note:</span> Signature and seal areas will appear at the bottom of the printed invoice. You can print the invoice and add your authorized signature and official seal manually.
+          </p>
         </div>
       </Card>
     </div>

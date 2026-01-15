@@ -50,6 +50,7 @@ export type InvoiceData = {
   paymentTerms: string
   purchaseOrderNumber: string
   notes: string
+  paymentMethod?: string
   isReserved?: boolean
 }
 
@@ -96,6 +97,7 @@ const defaultInvoiceData: InvoiceData = {
   currency: "OMR",
   discount: 0,
   paymentTerms: "Credit Card",
+  paymentMethod: "Bank Transfer",
   purchaseOrderNumber: "",
   notes: "",
 }

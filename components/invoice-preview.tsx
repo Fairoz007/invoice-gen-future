@@ -165,6 +165,43 @@ export function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
         </div>
       )}
 
+      {(invoiceData.paymentMethod === "Bank Transfer" || invoiceData.paymentMethod === undefined) && (
+        <div className="mb-6 rounded-lg border-2 border-[#2563EB] bg-[#DBEAFE] p-4 text-xs">
+          <div className="mb-2 font-bold text-[#2563EB]">BANK TRANSFER DETAILS</div>
+          <div className="space-y-1 text-[#1F2937]">
+            <div className="flex">
+              <span className="w-32 font-semibold">Company Name:</span>
+              <span>FUTURE FRONT EXCELLENCE LLC</span>
+            </div>
+            <div className="flex">
+              <span className="w-32 font-semibold">Account Number:</span>
+              <span>0338080791430018</span>
+            </div>
+            <div className="flex">
+              <span className="w-32 font-semibold">IBAN No:</span>
+              <span>OM430270338080791430018</span>
+            </div>
+            <div className="flex">
+              <span className="w-32 font-semibold">Branch Name:</span>
+              <span>0338 - Br Al Amerat</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="mb-6 flex justify-between items-end gap-8 pt-8 border-t border-[#E5E7EB]">
+        <div className="flex flex-col items-center">
+          <div className="text-xs font-medium text-[#1F2937]">
+            Authorized Signature
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="text-xs font-medium text-[#1F2937]">
+            Official Seal
+          </div>
+        </div>
+      </div>
+
       <div className="border-t-2 border-[#E5E7EB] pt-4 text-center text-xs text-[#6B7280]">
         <p className="font-semibold">Thank you for your business!</p>
         <p className="mt-1">If you have any questions regarding this invoice, please contact us at +968 7637 3445</p>
