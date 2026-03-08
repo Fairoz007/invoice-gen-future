@@ -36,6 +36,10 @@ export function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
         />
       </div>
 
+      <div className="mb-4 text-center">
+        <h1 className="text-xl font-bold tracking-widest text-[#1e3a8a] uppercase">Tax Invoice</h1>
+      </div>
+
       <div className="mb-6 rounded-lg bg-[#DBEAFE] p-4">
         <div className="grid grid-cols-3 gap-4 text-xs">
           <div>
