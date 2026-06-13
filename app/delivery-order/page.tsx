@@ -107,6 +107,9 @@ export default function DeliveryOrderPage() {
             <Link href="/purchase-order">
               <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Create PO</Button>
             </Link>
+            <Link href="/proforma-invoice">
+              <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Proforma Invoice</Button>
+            </Link>
             <Button variant="outline" onClick={reset} className="bg-white border-[#E5E7EB] text-[#1F2937]">
               <RotateCcw />
             </Button>

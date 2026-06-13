@@ -5,9 +5,10 @@ import Image from "next/image"
 
 type InvoicePreviewProps = {
   invoiceData: InvoiceData
+  documentTitle?: string
 }
 
-export function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
+export function InvoicePreview({ invoiceData, documentTitle = "Tax Invoice" }: InvoicePreviewProps) {
   const subtotal = invoiceData.items.reduce((sum, item) => {
     return sum + item.quantity * item.unitPrice
   }, 0)
@@ -37,7 +38,7 @@ export function InvoicePreview({ invoiceData }: InvoicePreviewProps) {
       </div>
 
       <div className="mb-4 text-center">
-        <h1 className="text-xl font-bold tracking-widest text-[#1e3a8a] uppercase">Tax Invoice</h1>
+        <h1 className="text-xl font-bold tracking-widest text-[#1e3a8a] uppercase">{documentTitle}</h1>
       </div>
 
       <div className="mb-6 rounded-lg bg-[#DBEAFE] p-4">

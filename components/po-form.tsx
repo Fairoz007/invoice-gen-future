@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Plus, Trash2 } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
 
 export type POItem = {
   id: string
@@ -67,8 +68,37 @@ export function POForm({ data, setData }: POFormProps) {
         <div className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <Label className="text-[#1F2937]">PO Number</Label>
-              <Input value={data.poNumber} onChange={(e) => handleChange("poNumber", e.target.value)} className="mt-2 border-[#E5E7EB] text-[#1F2937]" placeholder={data.autoPoNumber ? generateProvisionalNumber() : "Enter PO Number"} />
+              <div className="flex items-center justify-between">
+                <Label className="text-[#1F2937]">PO Number</Label>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-[#6B7280]">Auto</span>
+                  <Switch
+                    checked={data.autoPoNumber}
+                    onCheckedChange={(val) => {
+                      if (val) {
+                        setData({ ...data, poNumber: generateProvisionalNumber(), autoPoNumber: true })
+                      } else {
+                        setData({ ...data, autoPoNumber: false })
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+              <Input
+                value={data.poNumber}
+                readOnly={data.autoPoNumber}
+                onChange={(e) => {
+                  if (data.autoPoNumber) {
+                    setData({ ...data, autoPoNumber: false, poNumber: e.target.value })
+                  } else {
+                    handleChange("poNumber", e.target.value)
+                  }
+                }}
+                className={
+                  "mt-2 border-[#E5E7EB] text-[#1F2937] " + (data.autoPoNumber ? "bg-[#F3F4F6] cursor-not-allowed" : "bg-white")
+                }
+                title={data.autoPoNumber ? "PO number is automatically generated" : "Enter PO number manually"}
+              />
             </div>
             <div>
               <Label className="text-[#1F2937]">PO Date</Label>

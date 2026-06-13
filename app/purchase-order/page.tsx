@@ -9,6 +9,14 @@ import { Download, Printer, RotateCcw } from "lucide-react"
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
 
+const generateProvisionalNumber = () => {
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, "0")
+  const random = String(Math.floor(Math.random() * 999) + 1).padStart(3, "0")
+  return `PO-${year}-${month}-${random}`
+}
+
 const defaultPOData: POData = {
   poNumber: "",
   autoPoNumber: true,
@@ -28,11 +36,18 @@ export default function PurchaseOrderPage() {
 
   useEffect(() => {
     const draft = localStorage.getItem("po:draft")
-    if (draft) setData(JSON.parse(draft))
+    if (draft) {
+      setData(JSON.parse(draft))
+    } else {
+      setData((prev) => {
+        if (prev.poNumber || prev.autoPoNumber === false) return prev
+        return { ...prev, poNumber: generateProvisionalNumber() }
+      })
+    }
   }, [])
 
   const saveDraft = () => localStorage.setItem("po:draft", JSON.stringify(data))
-  const reset = () => setData({ ...defaultPOData })
+  const reset = () => setData({ ...defaultPOData, poNumber: generateProvisionalNumber() })
 
   const handleDownloadPDF = async () => {
     setIsGenerating(true)
@@ -101,6 +116,9 @@ export default function PurchaseOrderPage() {
             </Link>
             <Link href="/delivery-order">
               <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Create DO</Button>
+            </Link>
+            <Link href="/proforma-invoice">
+              <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Proforma Invoice</Button>
             </Link>
             <Button variant="outline" onClick={reset} className="bg-white border-[#E5E7EB] text-[#1F2937]">
               <RotateCcw />

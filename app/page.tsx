@@ -353,6 +353,9 @@ export default function InvoiceGeneratorPage() {
               <Link href="/purchase-order">
                 <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Purchase Order</Button>
               </Link>
+              <Link href="/proforma-invoice">
+                <Button variant="outline" className="bg-white border-[#E5E7EB] text-[#1F2937]">Proforma Invoice</Button>
+              </Link>
             </div>
           </div>
           <div className="flex gap-3">
